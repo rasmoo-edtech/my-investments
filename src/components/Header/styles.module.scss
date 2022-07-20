@@ -1,0 +1,16 @@
+header {
+  width: 100%;
+  height: 310px;
+  background-color: var(--regular-purple);
+  display: flex;
+  justify-content: center;
+}
+
+.header_container {
+  width: 1300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 50px;
+}
