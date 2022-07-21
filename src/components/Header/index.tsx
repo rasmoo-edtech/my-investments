@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { UserInfo } from '../UserInfo'
 import { WalletInfo } from '../WalletInfo'
 
@@ -10,12 +12,25 @@ interface HeaderProps {
 }
 
 export function Header ({ username, balance, invested }: HeaderProps) {
+  const [hasVisibleValues, setHasVisibleValues] = useState<boolean>(false)
+
+  const changeVisibleValues = (): void => {
+    setHasVisibleValues(!hasVisibleValues)
+  }
+
   return (
-    <header>
-      <div className={styles.header_container}>
-        <UserInfo username={username} />
-        <WalletInfo />
-      </div>
+    <header className={styles.header}>
+      <UserInfo
+        username={username}
+        changeVisibleValues={changeVisibleValues}
+        hasVisibleValues={hasVisibleValues}
+      />
+
+      <WalletInfo
+        balance={balance}
+        invested={invested}
+        hasVisibleValues={hasVisibleValues}
+      />
     </header>
   )
 }

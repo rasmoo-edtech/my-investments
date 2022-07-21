@@ -1,0 +1,12 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+
+  min-height: 100vh;
+
+  main {
+    width: 100%;
+    padding: 0 150px;
+  }
+}

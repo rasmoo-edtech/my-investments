@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Banco Master",
+    "type": "CDB",
+    "ipca": "6,14%",
+    "minValue": 1130,
+    "dueDate": "10-07-2020"
+  },
+  {
+    "name": "Magalu",
+    "type": "CDB",
+    "ipca": "6,14%",
+    "minValue": 830,
+    "dueDate": "08-07-2022"
+  },
+  {
+    "name": "GOL",
+    "type": "CDB",
+    "ipca": "6,14%",
+    "minValue": 2130,
+    "dueDate": "10-10-2022"
+  },
+  {
+    "name": "Avianca",
+    "type": "CDB",
+    "ipca": "6,14%",
+    "minValue": 2130,
+    "dueDate": "10-10-2021"
+  },
+  {
+    "name": "Nubank",
+    "type": "CDB",
+    "ipca": "6,14%",
+    "minValue": 1030,
+    "dueDate": "01-07-2023"
+  },
+  {
+    "name": "XP Investimentos",
+    "type": "CDB",
+    "ipca": "6,14%",
+    "minValue": 400,
+    "dueDate": "10-07-2022"
+  },
+  {
+    "name": "Casas Bahia",
+    "type": "CDB",
+    "ipca": "6,14%",
+    "minValue": 4000,
+    "dueDate": "11-07-2022"
+  }
+]

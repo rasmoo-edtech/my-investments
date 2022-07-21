@@ -1,33 +1,41 @@
-import { FaPlus } from 'react-icons/fa'
+import { useMemo } from 'react'
+import { FiPlus } from 'react-icons/fi'
 
 import styles from './styles.module.scss'
+import { formattedCurrency } from '../../utils/format'
 
-export function WalletInfo () {
+interface WalletInfoProps {
+    balance: number
+    invested: number
+    hasVisibleValues: boolean
+}
+
+export function WalletInfo ({ balance, invested, hasVisibleValues }: WalletInfoProps) {
+  const totalWallet: number = useMemo(() => balance + invested, [balance, invested])
+
   return (
-    <div className={styles.header_segunda_linha}>
-      <div className={styles.header_card}>
-          <div className={styles.header_card_infos}>
-              <span className={styles.span_fino}>Saldo da Conta</span>
-              <span className={styles.span_grosso}>R$45.000</span>
-          </div>
-          <button>
-              <FaPlus />
-          </button>
-      </div>
+    <div className={styles.walletInfo}>
+        <div>
+            <p>Saldo da Conta</p>
+            <strong>{hasVisibleValues ? formattedCurrency(balance) : '*****'}</strong>
+            <button
+                type="button"
+                className={styles.walletInfo__button}
+                onClick={() => console.log('ir para página de add saldo')}
+            >
+                <FiPlus size={26} />
+            </button>
+        </div>
 
-      <div className={styles.header_card}>
-          <div className={styles.header_card_infos}>
-              <span className={styles.span_fino}>Total Investido</span>
-              <span className={styles.span_grosso}>R$45.000</span>
-          </div>
-      </div>
+        <div>
+            <p>Total Investido</p>
+            <strong>{hasVisibleValues ? formattedCurrency(invested) : '*****'}</strong>
+        </div>
 
-      <div className={styles.header_card}>
-          <div className={styles.header_card_infos}>
-              <span className={styles.span_fino}>Saldo Total</span>
-              <span className={styles.span_grosso}>R$45.000</span>
-          </div>
-      </div>
-  </div>
+        <div>
+            <p>Saldo Total</p>
+            <strong>{hasVisibleValues ? formattedCurrency(totalWallet) : '*****'}</strong>
+        </div>
+    </div>
   )
 }

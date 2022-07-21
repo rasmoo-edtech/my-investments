@@ -1,0 +1,32 @@
+.page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    font-size: 20px;
+    line-height: 22px;
+    color: var(--black);
+  }
+}
+
+.filter {
+  display: flex;
+  column-gap: 20px;
+
+  span {
+    width: 257px;
+    height: 42px;
+    border-radius: 60px;
+    background: var(--grey);
+  }
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+
+  margin-top: 55px;
+  padding-bottom: 84px;
+}
