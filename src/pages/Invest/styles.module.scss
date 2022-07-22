@@ -1,0 +1,105 @@
+.invest {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.badge {
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--white);
+
+  padding: 5px 15px;
+  border-radius: 50px;
+  background: var(--regular-purple);
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 36px;
+
+  h1 {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 400;
+    color: var(--black);
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  > p {
+    color: var(--black);
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    column-gap: 42px;
+
+    p {
+      color: var(--regular-purple);
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 16px;
+
+  width: 645px;
+  padding: 42px 0;
+  border-radius: 6px;
+  border: 1px solid var(--grey);
+
+  strong {
+    font-size: 22px;
+    line-height: 25px;
+    font-weight: 400;
+  }
+
+  input {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 16px;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid rgba(119, 26, 201, 0.2);
+  }
+
+  .form__footer {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    column-gap: 10px;
+
+    button {
+      width: 145px;
+      height: 34px;
+      border: 0;
+      border-radius: 10px;
+
+      font-size: 12px;
+      line-height: 14px;
+      font-weight: 500;
+
+      &:first-child {
+        color: var(--black);
+        background: var(--grey);
+      }
+
+      &:last-child {
+        color: var(--white);
+        background: var(--regular-purple);
+      }
+    }
+  }
+}

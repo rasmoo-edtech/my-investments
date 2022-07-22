@@ -1,21 +1,19 @@
+import { Link } from 'react-router-dom'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { FaRegAddressCard } from 'react-icons/fa'
 
 import styles from './styles.module.scss'
+import { useWallet } from '../../hooks/useWallet'
 
-interface UserInfoProps {
-  username: string
-  hasVisibleValues: boolean
-  changeVisibleValues: () => void
-}
+export function UserInfo () {
+  const { username, changeVisibleValues, hasVisibleValues } = useWallet()
 
-export function UserInfo ({ username, hasVisibleValues, changeVisibleValues }: UserInfoProps) {
   return (
     <div className={styles.userInfo}>
       <div className={styles.avatar}>
-        <div className={styles.avatar__icon}>
+        <Link className={styles.avatar__icon} to="/">
           <FaRegAddressCard size={24} />
-        </div>
+        </Link>
 
         <p className={styles.avatar__info}>
           Bem-vindo, <br />
@@ -28,10 +26,9 @@ export function UserInfo ({ username, hasVisibleValues, changeVisibleValues }: U
         onClick={changeVisibleValues}
         className={styles.userInfo__button}
       >
-        {hasVisibleValues ? <FiEyeOff size={24} /> : <FiEye size={24} /> }
-        <span>
-          {hasVisibleValues ? 'Ocultar' : 'Mostrar'} valores
-        </span>
+        {hasVisibleValues ? <FiEyeOff size={24} /> : <FiEye size={24} />}
+
+        <span>{hasVisibleValues ? 'Ocultar' : 'Mostrar'} valores</span>
       </button>
     </div>
   )

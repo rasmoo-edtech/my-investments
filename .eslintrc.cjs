@@ -23,6 +23,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    'multiline-ternary': 'off'
   }
 }

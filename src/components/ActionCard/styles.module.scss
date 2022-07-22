@@ -11,13 +11,13 @@
 
 .action__info, .action__footer {
   display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-
   padding: 30px;
 }
 
 .action__info {
+  flex-direction: column;
+  row-gap: 12px;
+
   background: var(--grey);
 
   h1 {
@@ -52,6 +52,9 @@
 }
 
 .action__footer {
+  align-items: center;
+  justify-content: space-between;
+
   background: var(--regular-purple);
 
   p {
@@ -62,9 +65,13 @@
     strong {
       margin-right: 4px;
     }
+
+    & + p {
+      margin-top: 12px;
+    }
   }
 
-  button {
+  a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,5 +84,11 @@
     height: 42px;
     border-radius: 40px;
     background: var(--regular-light-purple);
+
+    transition: background 0.4s;
+
+    &:hover {
+      background: var(--tag-light-purple);
+    }
   }
 }

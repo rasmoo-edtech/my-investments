@@ -1,17 +1,26 @@
 import { useEffect, useState } from 'react'
+import { isFuture, parseISO } from 'date-fns'
 
 import { Layout } from '../../components/Layout'
 import { ActionCard } from '../../components/ActionCard'
 
+import api from '../../service/api'
 import styles from './styles.module.scss'
 import { Action } from '../../types/action'
-import dataActions from '../../data/actions.json'
 
 export function InvestmentsListPage () {
   const [actions, setActions] = useState<Action[]>([])
 
+  const loadInvestments = async () => {
+    const { data } = await api.get<Action[]>('investments')
+
+    const actionsApi = data.filter(action => isFuture(parseISO(action.time)))
+
+    setActions(actionsApi)
+  }
+
   useEffect(() => {
-    setActions(dataActions)
+    loadInvestments()
   }, [])
 
   return (

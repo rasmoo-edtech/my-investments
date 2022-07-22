@@ -40,10 +40,10 @@ export function HomePage () {
             </div>
 
             <div className={styles.content__box}>
-                <ButtonLink href="/meus-investimentos">
+                <ButtonLink to="/meus-investimentos">
                     Meus Investimentos
                 </ButtonLink>
-                <ButtonLink href="/investir">
+                <ButtonLink to="/investir">
                     Investir
                 </ButtonLink>
             </div>

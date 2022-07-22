@@ -1,21 +1,16 @@
 /* eslint-disable multiline-ternary */
 import { FaSearch } from 'react-icons/fa'
-import { useEffect, useState, ChangeEvent, useMemo } from 'react'
+import { useState, ChangeEvent, useMemo } from 'react'
 
 import { Layout } from '../../components/Layout'
 import { ActionCard } from '../../components/ActionCard'
 
 import styles from './styles.module.scss'
-import { Action } from '../../types/action'
-import actionsData from '../../data/actions.json'
+import { useWallet } from '../../hooks/useWallet'
 
 export function MyInvestmentsPage () {
+  const { actions } = useWallet()
   const [searchActionName, setSearchActionName] = useState<string>('')
-  const [actions, setActions] = useState<Action[]>([])
-
-  useEffect(() => {
-    setActions(actionsData)
-  }, [])
 
   const handleSearchActionName = (e: ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value
