@@ -1,12 +1,14 @@
 /* eslint-disable multiline-ternary */
 import { FaSearch } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import { useState, ChangeEvent, useMemo } from 'react'
 
 import { Layout } from '../../components/Layout'
+import { useWallet } from '../../hooks/useWallet'
+import { BoxAlert } from '../../components/BoxAlert'
 import { ActionCard } from '../../components/ActionCard'
 
 import styles from './styles.module.scss'
-import { useWallet } from '../../hooks/useWallet'
 
 export function MyInvestmentsPage () {
   const { actions } = useWallet()
@@ -30,26 +32,41 @@ export function MyInvestmentsPage () {
       <div className={styles.page__header}>
         <h2>Meus Investimentos</h2>
 
-        <div className={styles.field}>
-          <FaSearch />
-          <input
-            type="text"
-            placeholder="Pesquisar por nome"
-            onChange={handleSearchActionName}
-          />
-        </div>
+        {!!actions.length && (
+          <div className={styles.field}>
+            <FaSearch />
+            <input
+              type="text"
+              placeholder="Pesquisar por nome"
+              onChange={handleSearchActionName}
+            />
+          </div>
+        )}
       </div>
 
-      {isEmptySearch
-        ? (
-            <h3>Não foi possível localizar o nome da ação</h3>
-          ) : (
-            <div className={styles.actions}>
-              {actions.map(action => isMatchName(action.name) && (
-                <ActionCard key={action.name} {...action} />
-              ))}
-            </div>
-          )}
+      { !actions.length ? (
+        <BoxAlert>
+          Você não possui nenhuma ação na sua carteira de investimentos.
+          Para adquirir uma ação, acesse a página <Link to="/investir">clicando aqui.</Link>
+        </BoxAlert>
+      ) : (
+        <>
+          {isEmptySearch
+            ? (
+                <BoxAlert>
+                  Não foi possível localizar o nome da ação pesquisada,
+                  por favor, tente outro termo.
+                </BoxAlert>
+              ) : (
+                <div className={styles.actions}>
+                  {actions.map(action => isMatchName(action.name) && (
+                    <ActionCard key={action.name} {...action} isSell />
+                  ))}
+                </div>
+              )}
+        </>
+      )}
+
     </Layout>
   )
 }

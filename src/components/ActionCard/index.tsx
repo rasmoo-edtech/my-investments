@@ -5,12 +5,16 @@ import { isPast, parseISO } from 'date-fns/esm'
 import styles from './styles.module.scss'
 import { Action } from '../../types/action'
 import { formattedCurrency, formattedDate } from '../../utils/format'
+import { useWallet } from '../../hooks/useWallet'
 
 interface ActionCardProps extends Action {
   isBuy?: boolean
+  isSell?: boolean
 }
 
-export function ActionCard ({ isBuy = false, ...action }: ActionCardProps) {
+export function ActionCard ({ isBuy = false, isSell = false, ...action }: ActionCardProps) {
+  const { onSellAction } = useWallet()
+
   const modifierClass: string = useMemo(() => {
     if (isBuy) {
       return ''
@@ -52,6 +56,12 @@ export function ActionCard ({ isBuy = false, ...action }: ActionCardProps) {
           <Link to={`/investir/${action.id}`}>
             Comprar
           </Link>
+        )}
+
+        {isSell && (
+          <button type='button' onClick={() => onSellAction(action.id)}>
+            Vender
+          </button>
         )}
       </footer>
   </div>

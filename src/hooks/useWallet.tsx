@@ -1,7 +1,8 @@
+import { differenceInDays, parseISO } from 'date-fns'
 import { useContext, createContext, useMemo, useState, useEffect } from 'react'
 
 import { Action } from '../types/action'
-import { getLocalInvestments, updateLocalInvestments } from '../utils/investmets'
+import { extortInvestment, getLocalInvestments, updateLocalInvestments } from '../utils/investmets'
 
 interface WalletContextProps {
   username: string
@@ -12,6 +13,7 @@ interface WalletContextProps {
   changeVisibleValues: () => void
   actions: Action[]
   updateInvestments: (newAction: Action) => void
+  onSellAction: (actionId: string) => void
 }
 
 interface WalletProviderProps {
@@ -50,9 +52,22 @@ export function WalletProvider ({ children }: WalletProviderProps) {
     loadInvestments()
   }, [])
 
+  const onSellAction = (actionId: string): void => {
+    const action = actions.find(action => action.id === actionId)
+
+    if (action) {
+      // ATUALIZAR O SALDO
+      // console.log('valor', extortInvestment(action))
+
+      const updateActions = actions.filter(action => action.id !== actionId)
+      setActions(updateActions)
+      localStorage.setItem('actions', JSON.stringify(updateActions))
+    }
+  }
+
   return (
     <WalletContext.Provider
-      value={{ ...user, total, changeVisibleValues, hasVisibleValues, actions, updateInvestments }}
+      value={{ ...user, total, changeVisibleValues, hasVisibleValues, actions, updateInvestments, onSellAction }}
     >
       {children}
     </WalletContext.Provider>
