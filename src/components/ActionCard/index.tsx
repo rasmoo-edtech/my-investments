@@ -2,10 +2,10 @@ import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { isPast, parseISO } from 'date-fns/esm'
 
+import { Action } from 'types/action'
 import styles from './styles.module.scss'
-import { Action } from '../../types/action'
-import { formattedCurrency, formattedDate } from '../../utils/format'
-import { useWallet } from '../../hooks/useWallet'
+import { useWallet } from 'hooks/useWallet'
+import { formattedCurrency, formattedDate } from 'utils/format'
 
 interface ActionCardProps extends Action {
   isBuy?: boolean

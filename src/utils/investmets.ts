@@ -1,6 +1,7 @@
 import { differenceInDays, parseISO } from 'date-fns'
-import api from '../service/api'
-import { Action, ActionLocalStorage } from '../types/action'
+
+import api from 'service/api'
+import { Action, ActionLocalStorage } from 'types/action'
 
 export async function getLocalInvestments (): Promise<Action[]> {
   const { data } = await api.get<Action[]>('investments')

@@ -1,13 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { FormEvent, useEffect, useMemo, useState } from 'react'
 
-import { useWallet } from '../../hooks/useWallet'
-import { LayoutSimple } from '../../components/LayoutSimple'
+import { useWallet } from 'hooks/useWallet'
+import { LayoutSimple } from 'components/LayoutSimple'
 
-import api from '../../service/api'
+import api from 'service/api'
+import { Action } from 'types/action'
 import styles from './styles.module.scss'
-import { Action } from '../../types/action'
-import { formattedCurrency } from '../../utils/format'
+import { formattedCurrency } from 'utils/format'
 
 export function InvestPage () {
   const params = useParams()

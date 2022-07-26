@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { isFuture, parseISO, compareAsc } from 'date-fns'
 
-import { Layout } from '../../components/Layout'
-import { ActionCard } from '../../components/ActionCard'
+import { Layout } from 'components/Layout'
+import { ActionCard } from 'components/ActionCard'
 
-import api from '../../service/api'
+import api from 'service/api'
+import { Action } from 'types/action'
 import styles from './styles.module.scss'
-import { Action } from '../../types/action'
 
 type OrderFilter = 'asc' | 'desc' | 'date'
 

@@ -1,7 +1,7 @@
 import { useContext, createContext, useMemo, useState, useEffect } from 'react'
 
-import { Action } from '../types/action'
-import { extortInvestment, getLocalInvestments, updateLocalInvestments } from '../utils/investmets'
+import { Action } from 'types/action'
+import { extortInvestment, getLocalInvestments, updateLocalInvestments } from 'utils/investmets'
 
 interface WalletContextProps {
   username: string

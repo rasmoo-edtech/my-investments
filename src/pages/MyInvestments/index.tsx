@@ -3,10 +3,10 @@ import { FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useState, ChangeEvent, useMemo } from 'react'
 
-import { Layout } from '../../components/Layout'
-import { useWallet } from '../../hooks/useWallet'
-import { BoxAlert } from '../../components/BoxAlert'
-import { ActionCard } from '../../components/ActionCard'
+import { Layout } from 'components/Layout'
+import { useWallet } from 'hooks/useWallet'
+import { BoxAlert } from 'components/BoxAlert'
+import { ActionCard } from 'components/ActionCard'
 
 import styles from './styles.module.scss'
 

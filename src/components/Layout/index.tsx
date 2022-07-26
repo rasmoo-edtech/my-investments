@@ -1,5 +1,5 @@
-import { UserInfo } from '../UserInfo'
-import { WalletInfo } from '../WalletInfo'
+import { UserInfo } from 'components/UserInfo'
+import { WalletInfo } from 'components/WalletInfo'
 
 import styles from './styles.module.scss'
 

@@ -1,5 +1,5 @@
-import { Layout } from '../../components/Layout'
-import { ButtonLink } from '../../components/ButtonLink'
+import { Layout } from 'components/Layout'
+import { ButtonLink } from 'components/ButtonLink'
 
 import styles from './styles.module.scss'
 

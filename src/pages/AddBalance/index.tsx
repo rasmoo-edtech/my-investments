@@ -1,9 +1,9 @@
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useWallet } from '../../hooks/useWallet'
-import { LayoutSimple } from '../../components/LayoutSimple'
-import { formattedCurrency, formattedNumber } from '../../utils/format'
+import { useWallet } from 'hooks/useWallet'
+import { LayoutSimple } from 'components/LayoutSimple'
+import { formattedCurrency, formattedNumber } from 'utils/format'
 
 import styles from './styles.module.scss'
 

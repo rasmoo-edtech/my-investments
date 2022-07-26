@@ -2,8 +2,8 @@ import { FiPlus } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 
 import styles from './styles.module.scss'
-import { useWallet } from '../../hooks/useWallet'
-import { formattedCurrency } from '../../utils/format'
+import { useWallet } from 'hooks/useWallet'
+import { formattedCurrency } from 'utils/format'
 
 export function WalletInfo () {
   const navigate = useNavigate()
