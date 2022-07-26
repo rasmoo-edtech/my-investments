@@ -1,4 +1,3 @@
-import { differenceInDays, parseISO } from 'date-fns'
 import { useContext, createContext, useMemo, useState, useEffect } from 'react'
 
 import { Action } from '../types/action'
@@ -14,6 +13,7 @@ interface WalletContextProps {
   actions: Action[]
   updateInvestments: (newAction: Action) => void
   onSellAction: (actionId: string) => void
+  updateBalance: (someBalance: number) => void
 }
 
 interface WalletProviderProps {
@@ -23,16 +23,14 @@ interface WalletProviderProps {
 const WalletContext = createContext({} as WalletContextProps)
 
 export function WalletProvider ({ children }: WalletProviderProps) {
-  const [user, setUser] = useState({
-    username: 'Leonardo Vargas',
-    balance: 11661,
-    invested: 27452
-  })
+  const username = 'Leonardo Vargas'
+  const [balance, setBalance] = useState<number>(0)
+  const [invested, setInvested] = useState<number>(0)
   const [actions, setActions] = useState<Action[]>([])
 
-  const total: number = useMemo(() => user.balance + user.invested, [user])
+  const total: number = useMemo(() => balance + invested, [balance, invested])
 
-  const [hasVisibleValues, setHasVisibleValues] = useState<boolean>(false)
+  const [hasVisibleValues, setHasVisibleValues] = useState<boolean>(true)
 
   const changeVisibleValues = (): void => {
     setHasVisibleValues(!hasVisibleValues)
@@ -48,8 +46,17 @@ export function WalletProvider ({ children }: WalletProviderProps) {
     setActions(newInvestments)
   }
 
+  const loadBalance = (): void => {
+    const isBalance = localStorage.getItem('balance')
+
+    if (isBalance) {
+      setBalance(Number(isBalance))
+    }
+  }
+
   useEffect(() => {
     loadInvestments()
+    loadBalance()
   }, [])
 
   const onSellAction = (actionId: string): void => {
@@ -65,9 +72,17 @@ export function WalletProvider ({ children }: WalletProviderProps) {
     }
   }
 
+  const updateBalance = (someBalance: number) => {
+    setBalance(currentBalance => {
+      const newBalance = currentBalance + someBalance
+      localStorage.setItem('balance', String(newBalance))
+      return newBalance
+    })
+  }
+
   return (
     <WalletContext.Provider
-      value={{ ...user, total, changeVisibleValues, hasVisibleValues, actions, updateInvestments, onSellAction }}
+      value={{ username, balance, invested, total, changeVisibleValues, hasVisibleValues, actions, updateInvestments, onSellAction, updateBalance }}
     >
       {children}
     </WalletContext.Provider>

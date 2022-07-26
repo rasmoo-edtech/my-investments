@@ -17,3 +17,7 @@ export const formattedCurrency = (value: number): string => {
 export const formattedDate = (date: Date): string => {
   return format(date, "dd' de 'MMMM' de 'yyyy'", DATE_OPTION)
 }
+
+export const formattedNumber = (value: string): number => {
+  return Number(value.replace(/\D/g, ''))
+}

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 
 import { HomePage } from './pages/Home'
 import { InvestPage } from './pages/Invest'
+import { AddBalancePage } from './pages/AddBalance'
 import { MyInvestmentsPage } from './pages/MyInvestments'
 import { InvestmentsListPage } from './pages/InvestmentsList'
 
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path="/meus-investimentos" element={<MyInvestmentsPage />} />
           <Route path="/investir" element={<InvestmentsListPage />} />
           <Route path="/investir/:id" element={<InvestPage />} />
+          <Route path="/adicionar-saldo" element={<AddBalancePage />} />
         </Routes>
       </BrowserRouter>
     </WalletProvider>
