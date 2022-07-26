@@ -2,6 +2,27 @@
   width: 100%;
   display: flex;
   column-gap: 20px;
+
+  @media(max-width: 1000px) {
+    display: grid;
+    row-gap: 32px;
+    grid-template-columns: 1fr 1fr;
+
+    .content__links {
+      flex-direction: row;
+      column-gap: 16px;
+      grid-column: 1 / 3;
+    }
+  }
+
+  @media(max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+
+    .content__links {
+      flex-direction: column;
+    }
+  }
 }
 
 .content__box {

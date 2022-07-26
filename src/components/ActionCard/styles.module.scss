@@ -13,6 +13,10 @@
 .action__info, .action__footer {
   display: flex;
   padding: 30px;
+
+  @media(max-width: 600px) {
+    padding: 16px;
+  }
 }
 
 .action__info {
@@ -49,6 +53,26 @@
   p {
     font-size: 16px;
     line-height: 18px;
+  }
+
+  @media(max-width: 600px) {
+    row-gap: 6px;
+    
+    h1 {
+      font-size: 18px;
+      line-height: 22px;
+  
+      span {
+        font-size: 12px;
+        width: 60px;
+        height: 24px;
+      }
+    }
+  
+    p {
+      font-size: 14px;
+      line-height: 16px;
+    }
   }
 }
 
@@ -92,4 +116,26 @@
       background: var(--tag-light-purple);
     }
   }
+
+  @media(max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    column-gap: 0;
+    row-gap: 16px;
+
+    p {
+      font-size: 14px;
+      line-height: 16px;
+  
+      & + p {
+        margin-top: 6px;
+      }
+    }
+  
+    a, button {
+      width: 100%;
+      border-radius: 6px;      
+    }
+  }
+
 }

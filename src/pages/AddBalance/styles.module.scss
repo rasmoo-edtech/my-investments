@@ -16,7 +16,8 @@
 
   margin: 0 auto;
 
-  width: 645px;
+  width: 100%;
+  max-width: 645px;
   padding: 42px 0;
   border-radius: 6px;
   border: 1px solid var(--grey);
@@ -62,6 +63,22 @@
       &:last-child {
         color: var(--white);
         background: var(--regular-purple);
+      }
+    }
+  }
+
+  @media(max-width: 600px) {
+    padding: 40px 20px;
+
+    input {
+      max-width: 600px;
+    }
+
+    .form__footer {
+      width: 100%;
+
+      button {
+        width: 100%;
       }
     }
   }

@@ -39,7 +39,7 @@ export function HomePage () {
                 </div>
             </div>
 
-            <div className={styles.content__box}>
+            <div className={`${styles.content__box} ${styles.content__links}`}>
                 <ButtonLink to="/meus-investimentos">
                     Meus Investimentos
                 </ButtonLink>
