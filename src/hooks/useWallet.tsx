@@ -25,8 +25,15 @@ const WalletContext = createContext({} as WalletContextProps)
 export function WalletProvider ({ children }: WalletProviderProps) {
   const username = 'Leonardo Vargas'
   const [balance, setBalance] = useState<number>(0)
-  const [invested, setInvested] = useState<number>(0)
   const [actions, setActions] = useState<Action[]>([])
+
+  const invested = useMemo(() => {
+    const result = actions.reduce((previousValue, currentAction) => {
+      return previousValue + (currentAction.minValue * currentAction.quant)
+    }, 0)
+
+    return result
+  }, [actions])
 
   const total: number = useMemo(() => balance + invested, [balance, invested])
 
@@ -39,11 +46,6 @@ export function WalletProvider ({ children }: WalletProviderProps) {
   const loadInvestments = async () => {
     const localAction = await getLocalInvestments()
     setActions(localAction)
-  }
-
-  const updateInvestments = (newAction: Action): void => {
-    const newInvestments = updateLocalInvestments({ actions, newAction })
-    setActions(newInvestments)
   }
 
   const loadBalance = (): void => {
@@ -63,10 +65,10 @@ export function WalletProvider ({ children }: WalletProviderProps) {
     const action = actions.find(action => action.id === actionId)
 
     if (action) {
-      // ATUALIZAR O SALDO
-      // console.log('valor', extortInvestment(action))
+      updateBalance(extortInvestment(action))
 
       const updateActions = actions.filter(action => action.id !== actionId)
+
       setActions(updateActions)
       localStorage.setItem('actions', JSON.stringify(updateActions))
     }
@@ -78,6 +80,14 @@ export function WalletProvider ({ children }: WalletProviderProps) {
       localStorage.setItem('balance', String(newBalance))
       return newBalance
     })
+  }
+
+  const updateInvestments = (newAction: Action): void => {
+    const newInvestments = updateLocalInvestments({ actions, newAction })
+    setActions(newInvestments)
+
+    const decreaseBalance = newAction.minValue * newAction.quant * -1
+    updateBalance(decreaseBalance)
   }
 
   return (

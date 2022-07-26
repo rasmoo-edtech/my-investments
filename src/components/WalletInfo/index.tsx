@@ -1,10 +1,12 @@
 import { FiPlus } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 
 import styles from './styles.module.scss'
 import { useWallet } from '../../hooks/useWallet'
 import { formattedCurrency } from '../../utils/format'
 
 export function WalletInfo () {
+  const navigate = useNavigate()
   const { hasVisibleValues, balance, invested, total } = useWallet()
 
   return (
@@ -15,7 +17,7 @@ export function WalletInfo () {
             <button
                 type="button"
                 className={styles.walletInfo__button}
-                onClick={() => console.log('ir para página de add saldo')}
+                onClick={() => navigate('/adicionar-saldo')}
             >
                 <FiPlus size={26} />
             </button>

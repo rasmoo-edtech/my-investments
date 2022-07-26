@@ -13,10 +13,11 @@ interface ActionCardProps extends Action {
 }
 
 export function ActionCard ({ isBuy = false, isSell = false, ...action }: ActionCardProps) {
-  const { onSellAction } = useWallet()
+  const { onSellAction, balance } = useWallet()
 
   const modifierClass: string = useMemo(() => {
     if (isBuy) {
+      if (balance < action.minValue) return styles.action__disabled
       return ''
     }
 

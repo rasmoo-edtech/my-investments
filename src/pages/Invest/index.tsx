@@ -1,13 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { FormEvent, useEffect, useMemo, useState } from 'react'
 
+import { useWallet } from '../../hooks/useWallet'
 import { LayoutSimple } from '../../components/LayoutSimple'
 
 import api from '../../service/api'
 import styles from './styles.module.scss'
-import { useWallet } from '../../hooks/useWallet'
+import { Action } from '../../types/action'
 import { formattedCurrency } from '../../utils/format'
-import { Action, ActionLocalStorage } from '../../types/action'
 
 export function InvestPage () {
   const params = useParams()
@@ -16,26 +16,25 @@ export function InvestPage () {
 
   const [quantAction, setQuantAction] = useState<number>(0)
   const [action, setAction] = useState<Action | null>(null)
-  const [actions, setActions] = useState<ActionLocalStorage[]>([])
+
+  const goToInvestments = () => {
+    navigate('/investir')
+  }
 
   const loadAction = async () => {
-    const response = await api.get<Action>(`investments/${params.id}`)
-    setAction(response.data)
+    const { data } = await api.get<Action>(`investments/${params.id}`)
+
+    if (balance < data.minValue) {
+      goToInvestments()
+      return
+    }
+
+    setAction(data)
   }
 
   useEffect(() => {
     loadAction()
-
-    const localActions = localStorage.getItem('actions')
-
-    if (localActions) {
-      setActions(JSON.parse(localActions))
-    }
   }, [])
-
-  const cancelInvestment = (): void => {
-    console.log('cancelInvestment')
-  }
 
   const maxQuantAction = useMemo(() => {
     if (action) {
@@ -90,7 +89,7 @@ export function InvestPage () {
             />
 
             <footer className={styles.form__footer}>
-              <button type="button" onClick={cancelInvestment} >CANCELAR</button>
+              <button type="button" onClick={goToInvestments}>CANCELAR</button>
               <button type="submit">CONFIRMAR</button>
             </footer>
           </form>
